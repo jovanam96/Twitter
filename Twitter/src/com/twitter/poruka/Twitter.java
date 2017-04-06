@@ -30,7 +30,7 @@ public class Twitter {
 	 */
 	public void unesi(String korisnik, String poruka) {
 		TwitterPoruka tp = new TwitterPoruka();
-		tp.setKorisnik("korisnik");
+		tp.setKorisnik(korisnik);
 		tp.setPoruka(poruka);
 		
 		poruke.addLast(tp);
@@ -59,9 +59,9 @@ public class Twitter {
 		TwitterPoruka[] rezultat = new TwitterPoruka[maxBroj];
 	
 		for (int i = 0; i < poruke.size(); i++) 
-			if(poruke.get(i).getPoruka().indexOf(tag)!=1)
+			if(poruke.get(i).getPoruka().indexOf(tag)!=-1)
 				if(brojac < maxBroj) {
-					rezultat[brojac+1]=poruke.get(i);
+					rezultat[brojac]=poruke.get(i);
 					brojac++;
 				}
 				else break;

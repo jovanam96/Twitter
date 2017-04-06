@@ -71,5 +71,18 @@ public class TwitterPoruka {
 		return "KORISNIK:" + korisnik + " PORUKA:" + poruka;
 	}
 	
+	/**
+	 * Poredi dva objeksta klase TwitterPoruka
+	 * @return true ako su imena i poruke oba objekta jednaki, u suprotnom vraca false
+	 */
+	
+	@Override
+	public boolean equals(Object obj) {
+		TwitterPoruka tp = (TwitterPoruka) obj;
+		if(tp.getKorisnik().equals(korisnik) && tp.getPoruka().equals(poruka)){
+			return true;
+		}
+		return false;
+	}
 	
 }
