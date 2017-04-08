@@ -1,4 +1,4 @@
-package com.twitter.poruka;
+package com.twitter;
 
 import java.util.LinkedList;
 
@@ -58,14 +58,16 @@ public class Twitter {
 		
 		TwitterPoruka[] rezultat = new TwitterPoruka[maxBroj];
 	
-		for (int i = 0; i < poruke.size(); i++) 
-			if(poruke.get(i).getPoruka().indexOf(tag)!=-1)
+		for (int i = 0; i < poruke.size(); i++) {
+			if(poruke.get(i).getPoruka().indexOf(tag)!=-1) {
 				if(brojac < maxBroj) {
 					rezultat[brojac]=poruke.get(i);
 					brojac++;
+				} else {
+					break;
 				}
-				else break;
-			
+			}
+		}
 		return rezultat;
 	}
 	

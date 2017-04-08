@@ -1,10 +1,12 @@
-package com.twitter.poruka;
+package com.twitter;
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.twitter.poruka.TwitterPoruka;
 
 public class TwitterTest {
 	private Twitter t;
@@ -28,6 +30,22 @@ public class TwitterTest {
 		assertEquals(tp, t.vratiSvePoruke().getLast());
 	}
 	
+	
+	@Test
+	public void testUnesiBrojElemenata() {
+		TwitterPoruka tp1 = new TwitterPoruka();
+		tp1.setKorisnik("neko");
+		tp1.setPoruka("nesto");
+		t.unesi(tp1.getKorisnik(), tp1.getPoruka());
+		int brojac = t.vratiSvePoruke().size();
+		assertFalse(t.vratiSvePoruke().isEmpty());
+		TwitterPoruka tp = new TwitterPoruka();
+		tp.setKorisnik("jovanam96");
+		tp.setPoruka("Danasnji twit");
+		t.unesi(tp.getKorisnik(), tp.getPoruka());
+		assertEquals(brojac+1, t.vratiSvePoruke().size());
+	}
+	
 	@Test
 	public void testVratiPoruke() {
 		TwitterPoruka tp1 = new TwitterPoruka();
@@ -37,11 +55,9 @@ public class TwitterTest {
 		TwitterPoruka tp2 = new TwitterPoruka();
 		tp2.setKorisnik("neko");
 		tp2.setPoruka("nesto tag");
-		t.unesi(tp2.getKorisnik(), tp2.getKorisnik());
-		TwitterPoruka[] rezultat = new TwitterPoruka[100];
-		rezultat[0] = tp1;
-		rezultat[1] = tp2;
-		assertArrayEquals(rezultat, t.vratiPoruke(100, "tag"));
+		t.unesi(tp2.getKorisnik(), tp2.getPoruka());
+		TwitterPoruka[] rezultat = {tp1, tp2};
+		assertArrayEquals(rezultat, t.vratiPoruke(2, "tag"));
 	}
 	
 	@Test
